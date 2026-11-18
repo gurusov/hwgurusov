@@ -1,0 +1,6 @@
+2026-11-18 11:27:57,157 listening port=8000 storage=sqlite
+2026-11-18 11:29:05,972 http 192.168.65.1 "GET / HTTP/1.1" 200 -
+2026-11-18 11:29:05,990 http 192.168.65.1 "POST /increment HTTP/1.1" 200 -
+2026-11-18 11:29:06,006 http 192.168.65.1 "POST /increment HTTP/1.1" 200 -
+2026-11-18 11:29:06,017 http 192.168.65.1 "GET / HTTP/1.1" 200 -
+german@Evelinas-MacBook-Air app % docker run -d --name hw-app -p 8000:8000 -e GREETING='Привет, Alex, Gurus is here' hw-counter
