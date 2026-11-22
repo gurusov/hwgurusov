@@ -1,0 +1,55 @@
+proverka na 4
+docker build -t hw3-app:latest .
+docker run -d --name hw3-single -p 8080:8000 -e GREETING="Hi, Alex" hw3-app:latest
+
+curl -s http://127.0.0.1:8080/
+curl -s -X POST http://127.0.0.1:8080/increment
+curl -s -X POST http://127.0.0.1:8080/increment
+curl -s http://127.0.0.1:8080/
+
+docker logs hw3-single
+docker rm -f hw3-single
+
+
+
+
+proverka na 6
+cp .env.example .env
+docker compose up -d --build
+curl -s -X POST http://127.0.0.1:8080/increment
+curl -s -X POST http://127.0.0.1:8080/increment
+curl -s http://127.0.0.1:8080/
+
+docker compose rm -sf app
+docker compose up -d app
+curl -s http://127.0.0.1:8080/
+
+
+
+
+
+proverka na 8 
+docker compose up -d --build
+docker compose ps
+
+
+curl -s -X POST http://127.0.0.1:8080/increment
+curl -s -X POST http://127.0.0.1:8080/increment
+curl -s -X POST http://127.0.0.1:8080/increment
+curl -s http://127.0.0.1:8080/
+
+docker compose down
+docker compose up -d
+curl -s http://127.0.0.1:8080/
+
+docker compose stop redis
+curl -i -s http://127.0.0.1:8080/healthz | head -n 1
+curl -i -s http://127.0.0.1:8080/readyz | head -n 1
+curl -i -s -X POST http://127.0.0.1:8080/increment | head -n 1
+
+docker compose start redis
+docker compose ps
+curl -s http://127.0.0.1:8080/
+curl -s -X POST http://127.0.0.1:8080/increment
+curl -s http://127.0.0.1:8080/
+
